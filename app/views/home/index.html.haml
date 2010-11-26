@@ -1,0 +1,15 @@
+%div{ :id => "tabs" }
+  %ul
+    %li= link_to "Twitter", "#twitter"
+    %li= link_to "Feeds", "#feeds"
+  %div{:id => "twitter"}
+    - form_for :twitter, :url => { :action => :twitter}, :remote => true do |f|
+      %p= f.label("HashTag: ") + f.text_field(:search) + f.submit("GO!")
+      %div{:id => :twitter_results}
+        %h2 Resultados
+  %div{:id => "feeds"}
+    %div{:id => :new_feed}
+      - form_for :feed, :url => { :action => :new_feed }, :remote => true do |f|
+        %p= f.label("Feed URL: ") + f.text_field(:url) + f.submit("add")
+    %div{:id => :list_feed}
+      = render('feeds')

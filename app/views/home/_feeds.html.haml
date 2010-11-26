@@ -1,0 +1,9 @@
+%h2 Feeds
+- @feeds.each do |feed| 
+  - feed.parser
+  %div{:class => "feed"}
+    %h2= "#{feed.title} - #{feed.url}"    
+    - feed.entries.each do |entry|
+      %div{:class => :feed_entry}
+        %h4= link_to entry.title.html_safe, entry.url
+        %p= entry.content ? entry.content.html_safe :  "Não encontrado"
